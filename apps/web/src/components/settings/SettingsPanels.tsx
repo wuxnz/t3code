@@ -1611,7 +1611,7 @@ export function GeneralSettingsPanel() {
                             providerCard.provider === "codex"
                               ? "gpt-6.7-codex-ultra-preview"
                               : providerCard.provider === "opencode"
-                                ? "openai/gpt-5"
+                                ? "opencode/claude-opus-4-6"
                                 : "claude-sonnet-5-0"
                           }
                           spellCheck={false}

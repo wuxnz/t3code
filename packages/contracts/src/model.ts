@@ -129,7 +129,7 @@ export const DEFAULT_MODEL_BY_PROVIDER: Record<ProviderKind, string> = {
   codex: "gpt-5.4",
   claudeAgent: "claude-sonnet-4-6",
   cursor: "auto",
-  opencode: "openai/gpt-5",
+  opencode: "opencode/claude-opus-4-6",
 };
 
 export const DEFAULT_MODEL = DEFAULT_MODEL_BY_PROVIDER.codex;
@@ -139,7 +139,7 @@ export const DEFAULT_GIT_TEXT_GENERATION_MODEL_BY_PROVIDER: Record<ProviderKind,
   codex: "gpt-5.4-mini",
   claudeAgent: "claude-haiku-4-5",
   cursor: "composer-2",
-  opencode: "openai/gpt-5",
+  opencode: "opencode/claude-haiku-4-5",
 };
 
 export const MODEL_SLUG_ALIASES_BY_PROVIDER: Record<ProviderKind, Record<string, string>> = {
@@ -178,7 +178,32 @@ export const MODEL_SLUG_ALIASES_BY_PROVIDER: Record<ProviderKind, Record<string,
     "opus-4.5-thinking": "claude-opus-4-5",
     "opus-4.5": "claude-opus-4-5",
   },
-  opencode: {},
+  // OpenCode Zen: `opencode/…`. OpenCode Go catalog ids match https://opencode.ai/docs/go (and https://opencode.ai/go).
+  opencode: {
+    opus: "opencode/claude-opus-4-6",
+    "opus-4.6": "opencode/claude-opus-4-6",
+    "claude-opus-4-6": "opencode/claude-opus-4-6",
+    "zen-opus": "opencode/claude-opus-4-6",
+    "gpt-5": "openai/gpt-5",
+    gpt5: "openai/gpt-5",
+    // Go — bare ids and shortcuts → opencode-go/<id>
+    "glm-5": "opencode-go/glm-5",
+    "glm-5.1": "opencode-go/glm-5.1",
+    kimi: "opencode-go/kimi-k2.6",
+    "kimi-k2.5": "opencode-go/kimi-k2.5",
+    "kimi-k2.6": "opencode-go/kimi-k2.6",
+    "kimi-2.5": "opencode-go/kimi-k2.5",
+    "kimi-2.6": "opencode-go/kimi-k2.6",
+    "go-kimi": "opencode-go/kimi-k2.6",
+    "mimo-v2-pro": "opencode-go/mimo-v2-pro",
+    "mimo-v2-omni": "opencode-go/mimo-v2-omni",
+    "mimo-v2.5": "opencode-go/mimo-v2.5",
+    "mimo-v2.5-pro": "opencode-go/mimo-v2.5-pro",
+    "minimax-m2.5": "opencode-go/minimax-m2.5",
+    "minimax-m2.7": "opencode-go/minimax-m2.7",
+    "qwen3.5-plus": "opencode-go/qwen3.5-plus",
+    "qwen3.6-plus": "opencode-go/qwen3.6-plus",
+  },
 };
 
 // ── Provider display names ────────────────────────────────────────────

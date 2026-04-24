@@ -70,6 +70,12 @@ describe("normalizeModelSlug", () => {
     expect(normalizeModelSlug("gpt-5-codex")).toBe("gpt-5.4");
     expect(normalizeModelSlug("5.3")).toBe("gpt-5.3-codex");
     expect(normalizeModelSlug("sonnet", "claudeAgent")).toBe("claude-sonnet-4-6");
+    expect(normalizeModelSlug("zen-opus", "opencode")).toBe("opencode/claude-opus-4-6");
+    expect(normalizeModelSlug("go-kimi", "opencode")).toBe("opencode-go/kimi-k2.6");
+    expect(normalizeModelSlug("kimi-k2.5", "opencode")).toBe("opencode-go/kimi-k2.5");
+    expect(normalizeModelSlug("glm-5.1", "opencode")).toBe("opencode-go/glm-5.1");
+    expect(normalizeModelSlug("qwen3.5-plus", "opencode")).toBe("opencode-go/qwen3.5-plus");
+    expect(normalizeModelSlug("gpt-5", "opencode")).toBe("openai/gpt-5");
   });
 
   it("returns null for empty or missing values", () => {
@@ -85,6 +91,9 @@ describe("resolveModelSlugForProvider", () => {
     expect(resolveModelSlugForProvider("codex", undefined)).toBe(DEFAULT_MODEL_BY_PROVIDER.codex);
     expect(resolveModelSlugForProvider("claudeAgent", undefined)).toBe(
       DEFAULT_MODEL_BY_PROVIDER.claudeAgent,
+    );
+    expect(resolveModelSlugForProvider("opencode", undefined)).toBe(
+      DEFAULT_MODEL_BY_PROVIDER.opencode,
     );
   });
 

@@ -188,6 +188,52 @@ it.layer(makeTestLayer())("OpenCodeProviderLive", (it) => {
       assert.equal(agentDescriptor.options.find((option) => option.isDefault)?.id, "build");
     }),
   );
+
+  it.effect("lists models from both Zen and OpenCode Go provider rows when connected", () =>
+    Effect.gen(function* () {
+      runtimeMock.state.inventory = {
+        providerList: {
+          connected: ["opencode", "opencode-go"],
+          all: [
+            {
+              id: "opencode",
+              name: "OpenCode Zen",
+              models: {
+                "claude-opus-4-6": {
+                  id: "claude-opus-4-6",
+                  name: "Claude Opus 4.6",
+                  variants: {},
+                },
+              },
+            },
+            {
+              id: "opencode-go",
+              name: "OpenCode Go",
+              models: {
+                "kimi-k2.5": {
+                  id: "kimi-k2.5",
+                  name: "Kimi K2.5",
+                  variants: {},
+                },
+              },
+            },
+          ],
+          default: {},
+        },
+        agents: [{ name: "build", hidden: false, mode: "primary" }],
+      };
+
+      const provider = yield* OpenCodeProvider;
+      const snapshot = yield* provider.refresh;
+
+      const zen = snapshot.models.find((entry) => entry.slug === "opencode/claude-opus-4-6");
+      const go = snapshot.models.find((entry) => entry.slug === "opencode-go/kimi-k2.5");
+      assert.ok(zen);
+      assert.equal(zen?.subProvider, "OpenCode Zen");
+      assert.ok(go);
+      assert.equal(go?.subProvider, "OpenCode Go");
+    }),
+  );
 });
 
 it.layer(
